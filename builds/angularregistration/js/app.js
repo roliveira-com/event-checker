@@ -1,4 +1,4 @@
-var roliveira = angular.module('app',['ngRoute'])
+var roliveira = angular.module('app',['ngRoute','firebase'])
 
 	.config(['$routeProvider',function($routeProvider){
 		$routeProvider

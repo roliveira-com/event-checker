@@ -1,19 +1,19 @@
 <section class="card login">
-  <form name="myform"
-    novalidate>
-
+  <form name="loginForm" ng-submit="login()" novalidate>
     <div class="textintro">
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
-      <p>{{message}}</p>
+      <p>{{message}}</p> 
     </div>
 
     <fieldset>
-      <input type="email" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
+      <input ng-model="user.email" type="email" name="email" placeholder="Email" required>
+      <p class="error validationerror" ng-show="loginForm.email.$invalid && loginForm.email.$touched">Email Inválido</p>
+      <input ng-model="user.password" type="password" name="password" placeholder="Password" required>
+      <p class="error validationerror" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Digite sua senha!</p>
     </fieldset>
 
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn" ng-disabled="loginForm.$invalid">Login</button>
     <p>or <a href="#/register">register</a></p>
   </form>
 </section>
