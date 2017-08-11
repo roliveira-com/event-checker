@@ -1,11 +1,12 @@
-roliveira.controller('RegistrationController',['$scope', '$firebase', '$auth', 
-	function($scope,$firebase,$auth){
-
-	$scope.message = "Bem Vindo ao roliveira app";
-	$scope.user = {};
+roliveira.controller('RegistrationController',['$scope', '$auth', 
+	function($scope,$auth){
 
 	$scope.login = function(){
 		$auth.login($scope.user);
+	}
+
+	$scope.logout = function(){
+		$auth.logout();
 	}
 
 	$scope.register = function(){
