@@ -1,5 +1,4 @@
-roliveira.controller('RegistrationController',['$scope', '$auth', 
-	function($scope,$auth){
+roliveira.controller('RegistrationController',['$scope', '$auth', '$rootScope', function($scope,$auth,$rootScope){
 
 	$scope.login = function(){
 		$auth.login($scope.user);

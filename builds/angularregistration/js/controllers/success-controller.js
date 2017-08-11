@@ -1,3 +1,3 @@
-roliveira.controller('SuccessController',['$scope',function($scope){
-	$scope.message = 'Sucesso pra voce!';
+roliveira.controller('SuccessController',['$scope','$rootScope',function($scope,$rootScope){
+	$rootScope.message = "Sucesso pra você!";
 }])

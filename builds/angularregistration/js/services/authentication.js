@@ -2,6 +2,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 		
 		var ref = firebase.database().ref(); 
 		var auth = $firebaseAuth();
+		var service;
 
 		auth.$onAuthStateChanged(function(authUser){
 			if(authUser){
@@ -13,7 +14,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 			};
 		});	
 
-		return {
+		service = {
 			
 			login: function(user){
 				
@@ -30,7 +31,10 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 
 			logout: function(){
 				return auth.$signOut();
-				console.log('chamou logout()');
+			},
+
+			requireAuth : function(){
+				return auth.$requireSignIn();
 			},
 
 			cadastrar: function(user){
@@ -46,9 +50,9 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 							lastname: user.lastname,
 							email: user.email
 						});
-					
-					$rootScope.message = "Bem vindo " + user.firstname;
-				
+								
+					service.login(user);
+
 				}).catch(function(error){
 					
 					$rootScope.message = error.message;
@@ -58,5 +62,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 			}
 
 		}
+
+		return service;
 
 }])
