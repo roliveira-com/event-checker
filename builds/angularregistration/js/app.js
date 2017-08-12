@@ -19,16 +19,16 @@ var roliveira = angular.module('app',['ngRoute','firebase'])
 				templateUrl : 'views/register.html',
 				controller : 'RegistrationController'
 			})
-			.when('/success',{
-				templateUrl : 'views/success.html',
-				controller : 'SuccessController',
+			.when('/events',{
+				templateUrl : 'views/meetings.html',
+				controller : 'MeetingsController',
 				resolve : {
-		     	currentAuth: ["$auth", function($auth) {
-		        return $auth.requireAuth();
-      		}]
-    		}
+				     	currentAuth: ["$auth", function($auth) {
+				        return $auth.requireAuth();
+		      		}]
+    			}
 			})
 			.otherwise({
-				redirectTo: '/login'
+				redirectTo: '/events'
 			})
 	}])

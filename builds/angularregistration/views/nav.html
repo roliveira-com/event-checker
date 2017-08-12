@@ -1,5 +1,8 @@
   <div class="branding"><a ng-href="#/">angularJS</a></div>
-  <ul ng-hide="currentUser">
-    <li><a ng-href="#/login">Entrar</a></li>
-    <li><a ng-href="#/register">Cadastro</a></li>
+  <ul>
+    <li ng-hide="currentUser"><a ng-href="#/login">Entrar</a></li>
+    <li ng-hide="currentUser"><a ng-href="#/register">Cadastro</a></li>
+    <li ng-show="currentUser">
+    	<a ng-href="#/events">Eventos <span ng-show="howManyEvents" class="badge">{{howManyEvents}}</span></a>
+    </li>
   </ul>

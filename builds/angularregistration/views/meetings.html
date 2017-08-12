@@ -1,0 +1,23 @@
+<div class="card meetings cf">
+
+  <div class="textintro">
+    <h1>Adicionar Eventos</h1>
+    <p>Insira o nome de um evento e aperte +</p>
+    <form name="add_event_form" class="formgroup addmeeting cf" ng-submit="addEvento()" novalidate>
+    	<div class="inputwrapper">
+    		<input type="text" name="evt_name" placeholder="Nome do evento" ng-model="eventname" ng-required="true">
+    	</div>
+    	<button type="submit" class="btn" ng-disabled="add_event_form.$invalid">+</button>
+    </form>
+  </div>
+</div><!-- meetings cf -->
+
+<div class="card meetings cf">
+	
+	<h2>Seus Eventos cadastrados</h2>
+	<div class="meeting" ng-repeat="(key,event) in events"> 
+		<button type="button" class="btn btn-delete tooltip" ng-click="deleteEvento(key)" ><span>Apagar este evento</span></button>
+		<span class="text">{{event.nome}}</span>
+	</div>
+
+</div>
