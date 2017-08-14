@@ -17,6 +17,16 @@
 	<h2>Seus Eventos cadastrados</h2>
 	<div class="meeting" ng-repeat="(key,event) in events"> 
 		<button type="button" class="btn btn-delete tooltip" ng-click="deleteEvento(key)" ><span>Apagar este evento</span></button>
+		<a ng-href="#/checkins/{{currentUser.uid}}/{{meeting.$id}}" class="btn btn-checkin tooltip"><span>Faça o check-in neste evento</span></a>
+		<span class="text">{{event.nome}}</span>
+	</div>
+
+</div>
+
+<div class="card meetings cf">
+	
+	<h2>Todos os Eventos Cadastrados</h2>
+	<div class="meeting" ng-repeat="(key,allevent) in allevents"> 
 		<span class="text">{{event.nome}}</span>
 	</div>
 

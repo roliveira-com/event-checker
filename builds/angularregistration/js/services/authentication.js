@@ -34,7 +34,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 			},
 
 			requireAuth : function(){
-				return auth.$requireSignIn();
+				return $rootScope = auth.$requireSignIn();
 			},
 
 			cadastrar: function(user){
