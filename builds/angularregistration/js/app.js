@@ -8,7 +8,7 @@ var roliveira = angular.module('app',['ngRoute','firebase'])
 			})
 			.when('/checkins/:uId/:mId',{
 				templateUrl : 'views/checkins.html',
-				controller : 'CheckInsController'
+				controller : 'CheckinController'
 			})
 			.when('/register',{
 				templateUrl : 'views/register.html',

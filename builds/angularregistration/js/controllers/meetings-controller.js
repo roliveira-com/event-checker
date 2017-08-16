@@ -9,7 +9,8 @@ roliveira.controller('MeetingsController',['$rootScope','$scope','$firebaseAuth'
 			var eventsInfo = $firebaseArray(eventsRef);
 			
 			$scope.events = eventsInfo;
-			console.log($scope.events = eventsInfo);
+			$scope.authUser = authUser;
+			console.log(authUser);
 
 			eventsInfo.$loaded().then(function(data){
 				$rootScope.howManyEvents = eventsInfo.length;
