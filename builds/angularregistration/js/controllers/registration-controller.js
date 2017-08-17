@@ -6,6 +6,7 @@ roliveira.controller('RegistrationController',['$scope', '$auth', '$rootScope', 
 
 	$scope.logout = function(){
 		$auth.logout();
+		$rootScope.message = 'Logout feito com sucesso';
 	}
 
 	$scope.register = function(){

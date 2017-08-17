@@ -1,5 +1,14 @@
 var roliveira = angular.module('app',['ngRoute','firebase'])
 
+	.run(['$rootScope','$location',function($rootScope,$location){
+		$rootScope.$on('routeChangeError', function(event,next,previous,error){
+			if(error === 'AUTH_REQUIRED'){
+				$rootScope.message = 'Precisa estar logado para ver aquela página';
+				$location.path('/login');
+			}
+		});
+	}])
+
 	.config(['$routeProvider',function($routeProvider){
 		$routeProvider
 			.when('/login',{
@@ -26,13 +35,4 @@ var roliveira = angular.module('app',['ngRoute','firebase'])
 			.otherwise({
 				redirectTo: '/events'
 			})
-	}])
-
-	.run(['$rootScope','$location',function($rootScope,$location){
-		$rootScope.$on('routeChangeError', function(event,next,previous,error){
-			if(error === 'AUTH_REQUIRED'){
-				$rootScope.message = 'Precisa estar logado para ver aquela página';
-				$location.path('/login');
-			}
-		});
 	}])

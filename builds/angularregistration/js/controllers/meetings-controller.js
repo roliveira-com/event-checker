@@ -1,16 +1,18 @@
-roliveira.controller('MeetingsController',['$rootScope','$scope','$firebaseAuth','$firebaseArray',function($rootScope,$scope,$firebaseAuth,$firebaseArray){
+roliveira.controller('MeetingsController',['$rootScope','$scope','$firebaseAuth','$firebaseArray','$firebaseObject',function($rootScope,$scope,$firebaseAuth,$firebaseArray,$firebaseObject){
 
 	var ref = firebase.database().ref(); 
-	var auth = $firebaseAuth();
+	var userAuth = $firebaseAuth();
 
-	auth.$onAuthStateChanged(function(authUser){
+	userAuth.$onAuthStateChanged(function(authUser){
 		if(authUser){
-			var eventsRef = ref.child('usuarios').child(authUser.uid).child('eventos');
-			var eventsInfo = $firebaseArray(eventsRef);
+		
+			var userRef = ref.child('usuarios').child(authUser.uid);//BUSCANDO O Nó DESTE USUARIO NA BASE... 
+			var userObj = $firebaseObject(userRef); ///... MONTANDO O OBJETO DESTE USUARIO E...
+			$rootScope.currentUser = userObj; // ...INSERINDO O OBJETO DESTE USUARIO NO ESCOPO ROOT DO APP
 			
-			$scope.events = eventsInfo;
-			$scope.authUser = authUser;
-			console.log(authUser);
+			var eventsRef = ref.child('usuarios').child(authUser.uid).child('eventos');//BUSCANDO O Nó DOS EVENTOS DESTE USUARIO NA BASE...
+			var eventsInfo = $firebaseArray(eventsRef);///...E MONTANDO UM ARRAY DESTE EVENTOS...
+			$scope.events = eventsInfo; //...INSERINDO O ARRAY DESTE EVENTO NO ESCOPO DO CONTROLLER
 
 			eventsInfo.$loaded().then(function(data){
 				$rootScope.howManyEvents = eventsInfo.length;
@@ -32,7 +34,9 @@ roliveira.controller('MeetingsController',['$rootScope','$scope','$firebaseAuth'
 					$scope.eventname = '';
 				})
 			}
+		}else{
+			$rootScope.currentUser = '';
 		}
-	});	//auth.$onAuthStateChanged
+	});	//userAuth.$onAuthStateChanged
 
 }])//roliveira.controller

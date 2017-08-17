@@ -1,5 +1,7 @@
 roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray',function($rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray){
 
+	console.log('Current User at checkin controler: '+$rootScope.currentUser);
+
 	 var ref;
 
 	 $scope.whichEvent = $routeParams.mId;
