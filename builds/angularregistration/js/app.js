@@ -19,6 +19,10 @@ var roliveira = angular.module('app',['ngRoute','firebase'])
 				templateUrl : 'views/checkins.html',
 				controller : 'CheckinController'
 			})
+			.when('/checkins/:uId/:mId/checkinslist',{
+				templateUrl : 'views/checkinlist.html',
+				controller : 'CheckinController'
+			})
 			.when('/register',{
 				templateUrl : 'views/register.html',
 				controller : 'RegistrationController'

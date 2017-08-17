@@ -1,8 +1,8 @@
-roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray',function($rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray){
+roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
 
 	console.log('Current User at checkin controler: '+$rootScope.currentUser);
 
-	 var ref;
+	 var ref, checkinslist;
 
 	 $scope.whichEvent = $routeParams.mId;
 	 $scope.whichUser = $routeParams.uId;
@@ -12,6 +12,10 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 	.child('eventos').child($scope.whichEvent)
 	 	.child('checkins');
 
+	 	checkinslist = $firebaseArray(ref);
+	 	console.log(checkinslist);
+	 	$scope.checkins = checkinslist;
+
 	 	$scope.addCheckin = function(){
 	 		$firebaseArray(ref).$add({
 	 			nome: $scope.user.firstname,
@@ -20,8 +24,7 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 			data: firebase.database.ServerValue.TIMESTAMP	
 	 		})
 	 		.then(function(response){
-	 			$rootScope.message = "Check-in feito com sucesso!";
-	 			$scope.user = "";
+	 			$location.path('/checkins/' + $scope.whichUser + '/' + $scope.whichEvent + '/	checkinslist')
 	 		})
 	 		.catch(function(error){
 	 			console.log(error);
