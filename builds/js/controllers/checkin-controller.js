@@ -1,7 +1,5 @@
 roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
 
-	console.log('Current User at checkin controler: '+$rootScope.currentUser);
-
 	 var ref, checkinslist;
 
 	 $scope.whichEvent = $routeParams.mId;
@@ -13,7 +11,6 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 	.child('checkins');
 
 	 	checkinslist = $firebaseArray(ref);
-	 	console.log(checkinslist);
 	 	$scope.checkins = checkinslist;
 
 	 	$scope.addCheckin = function(){
@@ -29,6 +26,12 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		.catch(function(error){
 	 			console.log(error);
 	 		})
+	 	}
+
+	 	$scope.deleteCheckin = function(id){
+	 		var refSpecEvent = ref.child(id);
+	 		var delCheckin = $firebaseObject(refSpecEvent);
+	 		delCheckin.$remove(id);
 	 	}
 
 

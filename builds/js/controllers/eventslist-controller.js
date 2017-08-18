@@ -1,5 +1,7 @@
-roliveira.controller('eventsListController',['$scope','$firebaseArray',function($scope,$firebaseArray){
+roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArray',function($rootScope,$scope,$firebaseArray){
 		
+		console.log($rootScope.currentUser);
+
 		// acessando a database no firebase
 		var ref = firebase.database().ref(); 
 
@@ -24,11 +26,11 @@ roliveira.controller('eventsListController',['$scope','$firebaseArray',function(
 							var obj = {};
 
 							//configurando as propridades do o bjeto do evento
-							obj.id = eventKey;
-							obj.nome = eventValue.nome;
-							obj.data = eventValue.date;
-							obj.authorId = userValue.regUser;
-							obj.authorName = userValue.firstname+' '+userValue.lastname;
+							obj.id 					= eventKey;
+							obj.nome 				= eventValue.nome;
+							obj.database 		= eventValue.date;
+							obj.authorId 		= userValue.regUser;
+							obj.authorName 	= userValue.firstname+' '+userValue.lastname;
 
 							//inseindo o objeto do evento dentro do array especificado abaixo
 							this.push(obj);
@@ -37,8 +39,8 @@ roliveira.controller('eventsListController',['$scope','$firebaseArray',function(
 					
 					} // if 
 				
-				}); //forEach dos usuariosntos
-
+				}); //forEach dos usuarios
+				
 		  }) //promisse resolved from $loaded 
 		  
 		  .catch(function(error) {
