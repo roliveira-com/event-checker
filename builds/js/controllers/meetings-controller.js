@@ -12,7 +12,7 @@ roliveira.controller('MeetingsController',['$rootScope','$scope','$firebaseAuth'
 			
 			var eventsRef = ref.child('usuarios').child(authUser.uid).child('eventos');//BUSCANDO O Nó DOS EVENTOS DESTE USUARIO NA BASE...
 			var eventsInfo = $firebaseArray(eventsRef);///...E MONTANDO UM ARRAY DESTE EVENTOS...
-			$scope.events = eventsInfo; //...INSERINDO O ARRAY DESTE EVENTO NO ESCOPO DO CONTROLLER
+			$scope.events = eventsInfo; //...INSERINDO O ARRAY DE EVENTOS NO ESCOPO DO CONTROLLER
 
 			eventsInfo.$loaded().then(function(data){
 				$rootScope.howManyEvents = eventsInfo.length;

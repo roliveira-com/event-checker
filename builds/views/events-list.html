@@ -1,0 +1,22 @@
+<div class="card meetings cf">
+  <div class="textintro">
+    <h1>Eventos Cadastrados no Event Checker</h1>
+    <p>Explore</p>
+		<div class="card meetings cf">	
+			<ul class="userlist cf">
+				<li ng-repeat="(key,appEvent) in appEventsList">
+					 <div class="checkin">
+					 		<div class="info">
+					 			<h2>{{appEvent.nome}}</h2>
+					 			<div class="date"><b>Por:</b> {{ appEvent.authorName }}</div>
+					 			<div class="date"><b>Cadastrado em:</b> {{ appEvent.data | date: 'd MMM yy h:MM a' }}</div>
+					 		</div>
+					 </div>
+				</li>
+			</ul>
+		</div>
+  </div>
+</div><!-- meetings cf -->
+
+<p>&nbsp;</p>
+

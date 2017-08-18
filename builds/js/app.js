@@ -36,6 +36,10 @@ var roliveira = angular.module('app',['ngRoute','firebase'])
 		      		}]
     			}
 			})
+			.when('/events-list',{
+				templateUrl : 'views/events-list.html',
+				controller : 'eventsListController'
+			})
 			.otherwise({
 				redirectTo: '/events'
 			})
