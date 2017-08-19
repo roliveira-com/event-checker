@@ -4,6 +4,11 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 
 	 $scope.whichEvent = $routeParams.mId;
 	 $scope.whichUser = $routeParams.uId;
+	 
+	 $scope.busca = '';
+	 $scope.order = 'nome';
+	 $scope.direction = null;
+
 
 	 ref = firebase.database().ref()
 	 	.child('usuarios').child($scope.whichUser)

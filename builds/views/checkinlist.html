@@ -1,8 +1,29 @@
 <div class="card checkinslist">
 	<h1>Check-ins</h1>
 	<p>Segue uma lista dos ultimos check-ins feitos</p>
+	<div class="search cf">
+		<h2>Procurar check-ins</h2>
+		<input type="text" ng-model="busca" placeholder="busca">
+
+		<div class="formgroup">
+			<span class="label">por:</span>
+			<select ng-model="order" name="filtrar">
+				<option value="nome">Nome</option>
+				<option value="sobrenome">Sobrenome</option>
+				<option value="data">Data</option>
+			</select>
+		</div>
+
+		<div class="formgroup">
+			<input type="radio" id="dirascending" ng-model="direction" name="direction">
+			<label for="dirascending">asc</label>&nbsp;
+
+			<input type="radio" id="dirscending" ng-model="direction" name="direction" value="reverse">
+			<label for="dirscending">desc</label>&nbsp;
+		</div>
+	</div>
 	<ul class="userlist cf">
-		<li ng-repeat="checkin in checkins">
+		<li ng-repeat="checkin in checkins | orderBy: order:direction | filter: busca">
 			 <div class="checkin">
 			 		<div class="buttons">
 			 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este check-in</span></button>
