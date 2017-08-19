@@ -1,6 +1,4 @@
 roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArray',function($rootScope,$scope,$firebaseArray){
-		
-		console.log($rootScope.currentUser);
 
 		// acessando a database no firebase
 		var ref = firebase.database().ref(); 
@@ -26,11 +24,18 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 							var obj = {};
 
 							//configurando as propridades do o bjeto do evento
-							obj.id 					= eventKey;
-							obj.nome 				= eventValue.nome;
-							obj.database 		= eventValue.date;
-							obj.authorId 		= userValue.regUser;
+							obj.id 			= eventKey;
+							obj.nome 		= eventValue.nome;
+							obj.data 		= eventValue.date;
+							obj.authorId 	= userValue.regUser;
 							obj.authorName 	= userValue.firstname+' '+userValue.lastname;
+
+							//monta propriedade que informa se o ususario logado e autor deste evento
+							if(userValue.regUser == $rootScope.currentUser.$id){
+								obj.isOwner = true;
+							}else{
+								obj.isOwner = false;
+							}
 
 							//inseindo o objeto do evento dentro do array especificado abaixo
 							this.push(obj);

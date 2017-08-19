@@ -4,13 +4,17 @@
     <p>Explore</p>
 		<div class="card meetings cf">	
 			<ul class="userlist cf">
-				<li ng-repeat="(key,appEvent) in appEventsList">
+				<li ng-repeat="(key,appEvent) in appEventsList | orderBy:'-data':reverse">
 					 <div class="checkin">
-					 		<div class="info">
-					 			<h2>{{appEvent.nome}}</h2>
-					 			<div class="date"><b>Por:</b> {{ appEvent.authorName }}</div>
-					 			<div class="date"><b>Cadastrado em:</b> {{ appEvent.data | date: 'd MMM yy h:MM a' }}</div>
-					 		</div>
+				 		<div class="info">
+				 			<h2>{{appEvent.nome}}</h2>
+				 			<div class="date"><b>Por:</b> {{ appEvent.authorName }}</div>
+				 			<div class="date"><b>Cadastrado em:</b> {{ appEvent.data | date: 'd MMM yy h:MM a' }}</div>
+				 		</div>
+				 		<div ng-show="appEvent.isOwner">
+				 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este evento</span></button>
+							<a ng-href="#/checkins/{{currentUser.$id}}/{{appEvent.id}}/checkinslist" class="btn btn-list tooltip"><span>Veja os check-ins deste evento</span></a>
+				 		</div>
 					 </div>
 				</li>
 			</ul>
