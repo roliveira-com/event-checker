@@ -26,6 +26,10 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		console.log('picking OK');
 	 	};
 
+	 	$scope.showLove = function(myCheckin){
+	 		myCheckin.show = !myCheckin.show;
+	 	}
+
 	 	$scope.addCheckin = function(){
 	 		$firebaseArray(ref).$add({
 	 			nome: $scope.user.firstname,

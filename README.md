@@ -6,13 +6,15 @@ Created on top of [lynda.com](http://lynda.com) AngularJS 1 course series [Addin
 
 ### Installation
 
+Make sure you have the NodeJS and NPM installed. If not, please install them.
+
 Clone the repo and run `npm install` to install the dev dependencies and then run `gulp` to start de server with live reload whenever a change is detected.
 
 
 ### This project uses:
 
-- [AngularJS v1.4.5](https://angularjs.org/)
-- [Firebase v3.6.6](https://firebase.google.com/) 
-- [Angularfire v2.3.3](https://github.com/firebase/angularfire)
-- [GulpJS](https://gulpjs.com/)
+- [AngularJS v1.4.5](https://angularjs.org/) - as the Javascript framework
+- [Firebase v3.6.6](https://firebase.google.com/) - as the backend service api 
+- [Angularfire v2.3.3](https://github.com/firebase/angularfire) as the backend service abstraction for Angular
+- [GulpJS](https://gulpjs.com/) - as the local webserver
 
