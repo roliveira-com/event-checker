@@ -22,13 +22,13 @@
 			<label for="dirscending">desc</label>&nbsp;
 		</div>
 
-		<div class="buttons cf">
+		<div ng-show="currentUser" class="buttons cf">
 			<button class="btn btn-pick" ng-hide="recordId" ng-click="pickRandom()">Sortear usuário</button>
 			<button class="btn btn-pick" ng-show="recordId" ng-click="recordId=''" >Reset</button>
 		</div>
 	</div>
 	<ul class="userlist cf">
-		<li ng-repeat="checkin in checkins | orderBy: order:direction | filter: { $id: recordId, $: busca }">
+		<li ng-class="checkin.userState" ng-repeat="checkin in checkins | orderBy: order:direction | filter: { $id: recordId, $: busca }">
 			 <div class="checkin">
 			 		<div class="buttons">
 			 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este check-in</span></button>
@@ -45,6 +45,16 @@
 
 				 			<button type="submit" class="btn" ng-disable="love-form.$invalid">+</button>
 				 		</form>
+				 		<ul class="awardslist cf">
+				 			<li class="cf" ng-repeat="(key, award) in checkin.awards">
+				 				<div class="award">
+				 					<div class="buttons">
+				 						<button class="btn btn-delete award tooltip" ng-click="deleteLove(checkin,key)"><span>Delete este award</span></button>
+				 					</div>
+				 					{{ award.nome }}
+				 				</div>
+				 			</li>
+				 		</ul>
 					</div>
 			 </div>
 		</li>

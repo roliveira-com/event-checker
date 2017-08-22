@@ -1,4 +1,5 @@
 roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArray',function($rootScope,$scope,$firebaseArray){
+		$rootScope.message = '';
 
 		// acessando a database no firebase
 		var ref = firebase.database().ref(); 
@@ -47,6 +48,8 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 					} // if 
 				
 				}); //forEach dos usuarios
+
+				console.log($scope.appEventsList)
 				
 		  }) //promisse resolved from $loaded 
 		  
@@ -55,5 +58,20 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 		    console.log("Error:", error);
 		  
 		  });
+
+		  $scope.doCheckin = function(record){
+		  	var checkinTo = ref.child('usuarios').child(record.authorId).child('eventos').child(record.id).child('checkins');
+		  	var doingCheckin = $firebaseArray(checkinTo);
+		  	if ($rootScope.currentUser) {
+			  	doingCheckin.$add({
+			  		nome: $rootScope.currentUser.firstname,
+			  		sobrenome: $rootScope.currentUser.lastname,
+			  		email: $rootScope.currentUser.email,
+			  		data: firebase.database.ServerValue.TIMESTAMP
+			  	})
+		  	}else{
+		  		$rootScope.message = "É preciso estar logado para fazer Check-in";
+		  	}
+		  }
 
 }]);

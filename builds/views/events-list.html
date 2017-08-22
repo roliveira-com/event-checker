@@ -2,6 +2,7 @@
   <div class="textintro">
     <h1>Eventos Cadastrados no Event Checker</h1>
     <p>Explore</p>
+    <p ng-show="message" class="error">{{ message }}</p>
 		<div class="card meetings cf">	
 			<ul class="userlist cf">
 				<li ng-repeat="(key,appEvent) in appEventsList | orderBy:'-data':reverse">
@@ -14,7 +15,7 @@
 				 		<div>
 				 			<button ng-show="appEvent.isOwner" type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este evento</span></button>
 							<a  ng-show="appEvent.isOwner" ng-href="#/checkins/{{currentUser.$id}}/{{appEvent.id}}/checkinslist" class="btn btn-list tooltip"><span>Veja os check-ins deste evento</span></a>
-							<button type="button" class="btn btn-checkin tooltip"><span>Faça seu check-in neste evento</span></button>
+							<button type="button" ng-click="doCheckin(appEvent)" class="btn btn-checkin tooltip"><span>Faça seu check-in neste evento</span></button>
 				 		</div>
 					 </div>
 				</li>
