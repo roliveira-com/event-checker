@@ -11,9 +11,10 @@
 				 			<div class="date"><b>Por:</b> {{ appEvent.authorName }}</div>
 				 			<div class="date"><b>Cadastrado em:</b> {{ appEvent.data | date: 'd MMM yy h:MM a' }}</div>
 				 		</div>
-				 		<div ng-show="appEvent.isOwner">
-				 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este evento</span></button>
-							<a ng-href="#/checkins/{{currentUser.$id}}/{{appEvent.id}}/checkinslist" class="btn btn-list tooltip"><span>Veja os check-ins deste evento</span></a>
+				 		<div>
+				 			<button ng-show="appEvent.isOwner" type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este evento</span></button>
+							<a  ng-show="appEvent.isOwner" ng-href="#/checkins/{{currentUser.$id}}/{{appEvent.id}}/checkinslist" class="btn btn-list tooltip"><span>Veja os check-ins deste evento</span></a>
+							<button type="button" class="btn btn-checkin tooltip"><span>Faça seu check-in neste evento</span></button>
 				 		</div>
 					 </div>
 				</li>

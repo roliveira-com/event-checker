@@ -23,21 +23,23 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 							//iniciando objeto que abrigará os dados deste evento
 							var obj = {};
 
-							//configurando as propridades do o bjeto do evento
+							//configurando as propriedades do objeto do evento
 							obj.id 			= eventKey;
 							obj.nome 		= eventValue.nome;
 							obj.data 		= eventValue.date;
 							obj.authorId 	= userValue.regUser;
 							obj.authorName 	= userValue.firstname+' '+userValue.lastname;
 
-							//monta propriedade que informa se o ususario logado e autor deste evento
-							if(userValue.regUser == $rootScope.currentUser.$id){
-								obj.isOwner = true;
-							}else{
-								obj.isOwner = false;
+							//monta propriedade que informa se o ususario logad	o e autor deste evento
+							if($rootScope.currentUser){
+								if(userValue.regUser == $rootScope.currentUser.$id){
+									obj.isOwner = true;
+								}else{
+									obj.isOwner = false;
+								}
 							}
 
-							//inseindo o objeto do evento dentro do array especificado abaixo
+							//inserindo o objeto do evento dentro do array especificado abaixo
 							this.push(obj);
 
 						}, $scope.appEventsList); //array do evento onde os objetos de evento serão inserido após a iteração

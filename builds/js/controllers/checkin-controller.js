@@ -9,6 +9,8 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 $scope.order = 'nome';
 	 $scope.direction = null;
 
+	 $scope.recordId = '';
+
 
 	 ref = firebase.database().ref()
 	 	.child('usuarios').child($scope.whichUser)
@@ -17,6 +19,12 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 
 	 	checkinslist = $firebaseArray(ref);
 	 	$scope.checkins = checkinslist;
+
+	 	$scope.pickRandom = function(){
+	 		var whichRecord = Math.round(Math.random()*(checkinslist.length - 1));
+	 		$scope.recordId = checkinslist.$keyAt(whichRecord);
+	 		console.log('picking OK');
+	 	};
 
 	 	$scope.addCheckin = function(){
 	 		$firebaseArray(ref).$add({
@@ -31,13 +39,13 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		.catch(function(error){
 	 			console.log(error);
 	 		})
-	 	}
+	 	};
 
 	 	$scope.deleteCheckin = function(id){
 	 		var refSpecEvent = ref.child(id);
 	 		var delCheckin = $firebaseObject(refSpecEvent);
 	 		delCheckin.$remove(id);
-	 	}
+	 	};
 
 
 }])//roliveira.controller

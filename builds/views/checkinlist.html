@@ -21,9 +21,14 @@
 			<input type="radio" id="dirscending" ng-model="direction" name="direction" value="reverse">
 			<label for="dirscending">desc</label>&nbsp;
 		</div>
+
+		<div class="buttons cf">
+			<button class="btn btn-pick" ng-hide="recordId" ng-click="pickRandom()">Sortear usuário</button>
+			<button class="btn btn-pick" ng-show="recordId" ng-click="recordId=''" >Reset</button>
+		</div>
 	</div>
 	<ul class="userlist cf">
-		<li ng-repeat="checkin in checkins | orderBy: order:direction | filter: busca">
+		<li ng-repeat="checkin in checkins | orderBy: order:direction | filter: { $id: recordId, $: busca }">
 			 <div class="checkin">
 			 		<div class="buttons">
 			 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este check-in</span></button>
