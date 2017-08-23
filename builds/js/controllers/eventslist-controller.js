@@ -30,6 +30,7 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 							obj.data 		= eventValue.date;
 							obj.authorId 	= userValue.regUser;
 							obj.authorName 	= userValue.firstname+' '+userValue.lastname;
+							obj.checkedin	= '';
 
 							//monta propriedade que informa se o ususario logad	o e autor deste evento
 							if($rootScope.currentUser){
@@ -39,6 +40,16 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 									obj.isOwner = false;
 								}
 							}
+
+							if(eventValue.checkins){
+								angular.forEach(eventValue.checkins,function(checkinValue,checkinKey){
+									if(checkinValue.email == $rootScope.currentUser.email){
+										obj.checkedin = true;
+									}else{
+										obj.checkedin = false;
+									}
+								},obj.checkedin);
+							};
 
 							//inserindo o objeto do evento dentro do array especificado abaixo
 							this.push(obj);
