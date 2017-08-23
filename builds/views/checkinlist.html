@@ -26,13 +26,14 @@
 			<button class="btn btn-pick" ng-hide="recordId" ng-click="pickRandom()">Sortear usuário</button>
 			<button class="btn btn-pick" ng-show="recordId" ng-click="recordId=''" >Reset</button>
 		</div>
+
 	</div>
 	<ul class="userlist cf">
 		<li ng-class="checkin.userState" ng-repeat="checkin in checkins | orderBy: order:direction | filter: { $id: recordId, $: busca }">
 			 <div class="checkin">
 			 		<div class="buttons">
 			 			<button type="button" class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)" ><span>Apagar este check-in</span></button>
-			 			<button type="button" class="btn btn-love tooltip" ng-click="showLove(checkin)" ><span>Show the love!</span></button>
+			 			<button type="button" class="btn btn-comments tooltip" ng-click="showComentBox(checkin)" ><span>Comente este check-in!</span></button>
 			 		</div>
 			 		<div class="info">
 			 			<h2>{{ checkin.nome }} {{checkin.sobrenome}}</h2>
@@ -40,18 +41,19 @@
 			 		</div>
 
 					<div class="showcheckins" ng-show="checkin.show">
-				 		<form id="love-form" ng-submit="giveLove(checkin, checkin.giftText)" class="cf" novalidate="novalidate">
-				 			<input type="text" name="giftText" placeholder="Qual seu presente?" ng-required="true" ng-model="checkin.giftText">
+				 		<form id="love-form" ng-submit="postComment(checkin, checkin.commentText)" class="cf" novalidate="novalidate">
+				 			<input type="text" name="commentText" placeholder="escreva seu comentário" ng-required="true" ng-model="checkin.commentText">
 
 				 			<button type="submit" class="btn" ng-disable="love-form.$invalid">+</button>
 				 		</form>
 				 		<ul class="awardslist cf">
-				 			<li class="cf" ng-repeat="(key, award) in checkin.awards">
+				 			<li class="cf" ng-repeat="(key, comment) in checkin.comments">
 				 				<div class="award">
 				 					<div class="buttons">
-				 						<button class="btn btn-delete award tooltip" ng-click="deleteLove(checkin,key)"><span>Delete este award</span></button>
+				 						<button class="btn btn-delete award tooltip" ng-click="deleteComment(checkin,key)"><span>Delete este award</span></button>
 				 					</div>
-				 					{{ award.nome }}
+				 					<p>{{ comment.text }}</p>
+				 					<p><small>by: {{ comment.authorName }}</small></p>
 				 				</div>
 				 			</li>
 				 		</ul>

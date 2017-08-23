@@ -229,6 +229,7 @@ input[type=radio] {
 .btn-checkin { background-color: #859835; background-image: url(../images/icons/icon_checkmark.png); }
 .btn-delete { background-color: #C94C24; background-image: url(../images/icons/icon_trash.png); }
 .btn-love { background-image: url(../images/icons/icon_heart.png); }
+.btn-comments { background-image: url(../images/icons/icon_comments.png); }
 .btn-email { background-image: url(../images/icons/icon_email.png); }
 .btn-meeting { background-image:  url(../images/icons/icon_meeting.png); }
 

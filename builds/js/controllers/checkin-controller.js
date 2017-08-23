@@ -26,7 +26,8 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		console.log('picking OK');
 	 	};
 
-	 	$scope.showLove = function(myCheckin){
+	 	$scope.showComentBox = function(myCheckin){
+	 		console.log($rootScope.currentUser);
 	 		myCheckin.show = !myCheckin.show;
 	 		if(myCheckin.userState == 'expanded'){
 	 			myCheckin.userState = '';
@@ -35,18 +36,20 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		}
 	 	}
 
-	 	$scope.giveLove = function(myCheckin, myGift){
-	 		var refLove = ref.child(myCheckin.$id).child('awards');
-	 		var checkinsArray = $firebaseArray(refLove);
+	 	$scope.postComment = function(myCheckin, myComment){
+	 		var refComments = ref.child(myCheckin.$id).child('comments');
+	 		var checkinsArray = $firebaseArray(refComments);
 	 		checkinsArray.$add({
-	 			nome: myGift,
+	 			text: myComment,
+	 			authorId : $rootScope.currentUser.regUser,
+	 			authorName: $rootScope.currentUser.firstname+' '+$rootScope.currentUser.lastname,
 	 			data: firebase.database.ServerValue.TIMESTAMP
 	 		})
 	 	}
 
-	 	$scope.deleteLove = function(myCheckin,key){
-	 		var refLove = ref.child(myCheckin.$id).child('awards').child(key);
-	 		var record = $firebaseObject(refLove);
+	 	$scope.deleteComment = function(myCheckin,key){
+	 		var refComments = ref.child(myCheckin.$id).child('comments').child(key);
+	 		var record = $firebaseObject(refComments);
 	 		record.$remove(key);
 	 	}
 

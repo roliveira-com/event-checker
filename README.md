@@ -18,3 +18,10 @@ Clone the repo and run `npm install` to install the dev dependencies and then ru
 - [Angularfire v2.3.3](https://github.com/firebase/angularfire) as the backend service abstraction for Angular
 - [GulpJS](https://gulpjs.com/) - as the local webserver
 
+### Color pallette
+
+`#9EBFD7`
+`#407376`
+`#396466`
+`#20229A`
+
