@@ -22,7 +22,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 					user.email,
 					user.password
 				).then(function(logged){
-					$location.path('/success');
+					$location.path('/events');
 				}).catch(function(error){
 					$rootScope.message = error.message;
 				});
