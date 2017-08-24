@@ -5,6 +5,7 @@ roliveira.factory('$auth',['$rootScope','$firebaseAuth','$location','$firebaseOb
 		var service;
 
 		auth.$onAuthStateChanged(function(authUser){
+
 			if(authUser){
 				var userRef = ref.child('usuarios').child(authUser.uid);
 				var userObj = $firebaseObject(userRef);

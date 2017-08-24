@@ -1,4 +1,4 @@
-roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArray',function($rootScope,$scope,$firebaseArray){
+roliveira.controller('eventsListController',['$api','$rootScope','$scope','$firebaseArray',function($api,$rootScope,$scope,$firebaseArray){
 		$rootScope.message = '';
 
 		// acessando a database no firebase
@@ -70,19 +70,8 @@ roliveira.controller('eventsListController',['$rootScope','$scope','$firebaseArr
 		  
 		  });
 
-		  $scope.doCheckin = function(record){
-		  	var checkinTo = ref.child('usuarios').child(record.authorId).child('eventos').child(record.id).child('checkins');
-		  	var doingCheckin = $firebaseArray(checkinTo);
-		  	if ($rootScope.currentUser) {
-			  	doingCheckin.$add({
-			  		nome: $rootScope.currentUser.firstname,
-			  		sobrenome: $rootScope.currentUser.lastname,
-			  		email: $rootScope.currentUser.email,
-			  		data: firebase.database.ServerValue.TIMESTAMP
-			  	})
-		  	}else{
-		  		$rootScope.message = "É preciso estar logado para fazer Check-in";
-		  	}
+			$scope.doCheckin = function(record){
+		  	$api.addCheckin(record.authorId,record.id);
 		  }
 
 }]);

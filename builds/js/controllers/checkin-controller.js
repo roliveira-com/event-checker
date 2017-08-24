@@ -1,4 +1,4 @@
-roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
+roliveira.controller('CheckinController',['$api','$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($api,$rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
 
 	 var ref, checkinslist;
 
@@ -23,11 +23,9 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 	$scope.pickRandom = function(){
 	 		var whichRecord = Math.round(Math.random()*(checkinslist.length - 1));
 	 		$scope.recordId = checkinslist.$keyAt(whichRecord);
-	 		console.log('picking OK');
 	 	};
 
 	 	$scope.showComentBox = function(myCheckin){
-	 		console.log($rootScope.currentUser);
 	 		myCheckin.show = !myCheckin.show;
 	 		if(myCheckin.userState == 'expanded'){
 	 			myCheckin.userState = '';
@@ -53,19 +51,9 @@ roliveira.controller('CheckinController',['$rootScope','$scope','$routeParams','
 	 		record.$remove(key);
 	 	}
 
+
 	 	$scope.addCheckin = function(){
-	 		$firebaseArray(ref).$add({
-	 			nome: $scope.user.firstname,
-	 			sobrenome: $scope.user.lastname,
-	 			email: $scope.user.email,
-	 			data: firebase.database.ServerValue.TIMESTAMP	
-	 		})
-	 		.then(function(response){
-	 			$location.path('/checkins/' + $scope.whichUser + '/' + $scope.whichEvent + '/	checkinslist')
-	 		})
-	 		.catch(function(error){
-	 			console.log(error);
-	 		})
+	 		$auth.addCheckin($scope.whichUser,$scope.whichEvent);
 	 	};
 
 	 	$scope.deleteCheckin = function(id){

@@ -1,32 +1,47 @@
-roliveira.factory('$api',['$rootScope','$scope','$firebaseObject','$firebaseAuth','$firebaseArray',function($rootScope,$scope,$firebaseObject,$firebaseAuth,$firebaseArray){
+roliveira.factory('$api',['$rootScope','$location','$auth',function($rootScope,$location,$auth){
 
-	//base ref database
-	var userCheck_ref = firebase.database().ref()
-	 	.child('usuarios').child($scope.whichUser)
-	 	.child('eventos').child($scope.whichEvent)
-	 	.child('checkins');
+	var apiservice;
 
-	var service;
+	apiservice = {
 
-	service = {
+		addCheckin: function(userId,eventId){
 
-		addCheckin: function(){
-	 		$firebaseArray(userCheck_ref).$add({
-	 			nome: $scope.user.firstname,
-	 			sobrenome: $scope.user.lastname,
-	 			email: $scope.user.email,
-	 			data: firebase.database.ServerValue.TIMESTAMP	
-	 		})
-	 		.then(function(response){
-	 			$location.path('/checkins/' + $scope.whichUser + '/' + $scope.whichEvent + '/	checkinslist')
-	 		})
-	 		.catch(function(error){
-	 			console.log(error);
-	 		})
+			if($rootScope.currentUser){
+
+				var checkin = {
+					nome: $rootScope.currentUser.firstname,
+					sobrenome: $rootScope.currentUser.lastname,
+					email: $rootScope.currentUser.email,
+					data: firebase.database.ServerValue.TIMESTAMP
+				};
+
+				var newCheckinKey = firebase.database().ref().child('eventos/'+eventId+'/checkins').push().key;
+				console.log('A key deste check-in será: '+newCheckinKey);
+
+				var updates = {};
+				updates['usuarios/'+userId+'/eventos/'+eventId+'/checkins/'+newCheckinKey] = checkin;
+				updates['eventos/'+eventId+'/checkins/'+newCheckinKey] = checkin;
+
+				firebase.database().ref().update(updates)
+					.then(function(success){
+						$location.path('checkins/'+userId+'/'+eventId+'/checkinslist');
+					})
+					.catch(function(error){
+						console.log(error);
+					})			
+						
+			} else {
+
+				$rootScope.message = "É preciso estar logado para fazer Check-in";
+
+			}
+
+
+
 		}
 
 	}
 
-	return service;
+	return apiservice;
 
 }])
