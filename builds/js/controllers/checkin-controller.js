@@ -38,12 +38,10 @@ roliveira.controller('CheckinController',['$apiCheckin','$rootScope','$scope','$
 	 	$scope.postComment = function(myCheckin, myComment){
 	 		$apiCheckin.postCheckinComments($scope.whichUser,$scope.whichEvent,myCheckin.$id,myComment);
 	 	}
-
+	 	
 
 	 	$scope.deleteComment = function(myCheckin,key){
-	 		var refComments = ref.child(myCheckin.$id).child('comments').child(key);
-	 		var record = $firebaseObject(refComments);
-	 		record.$remove(key);
+	 		$apiCheckin.deleteCheckinComments($scope.whichUser,$scope.whichEvent,myCheckin.$id,key)
 	 	}
 
 

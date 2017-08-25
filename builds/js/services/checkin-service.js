@@ -87,6 +87,24 @@ roliveira.factory('$apiCheckin',['$rootScope','$location','$auth',function($root
 
 			}
 
+		},
+
+		deleteCheckinComments: function(userId,eventId,checkinId,commentId){
+			firebase.database().ref('usuarios/'+userId+'/eventos/'+eventId+'/checkins/'+checkinId+'/comments/'+commentId).remove()
+				.then(function(success){
+					console.log('Registro removido em: /usuarios/'+userId+'/eventos/'+eventId+'/checkins/'+checkinId+'/comments/'+commentId);
+				})
+				.catch(function(error){
+					console.log(error);
+				})
+
+			firebase.database().ref('eventos/'+eventId+'/checkins/'+checkinId+'/comments/'+commentId).remove()
+				.then(function(success){
+					console.log('Registro removido em: /eventos/'+eventId+'/checkins/'+checkinId+'/comments/'+commentId);
+				})
+				.catch(function(error){
+					console.log(error);
+				})
 		}
 
 	}
