@@ -1,4 +1,4 @@
-roliveira.controller('CheckinController',['$api','$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($api,$rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
+roliveira.controller('CheckinController',['$apiCheckin','$rootScope','$scope','$routeParams','$firebaseObject','$firebaseAuth','$firebaseArray','$location',function($apiCheckin,$rootScope,$scope,$routeParams,$firebaseObject,$firebaseAuth,$firebaseArray,$location){
 
 	 var ref, checkinslist;
 
@@ -33,17 +33,12 @@ roliveira.controller('CheckinController',['$api','$rootScope','$scope','$routePa
 	 			myCheckin.userState = 'expanded';
 	 		}
 	 	}
+	 	
 
 	 	$scope.postComment = function(myCheckin, myComment){
-	 		var refComments = ref.child(myCheckin.$id).child('comments');
-	 		var checkinsArray = $firebaseArray(refComments);
-	 		checkinsArray.$add({
-	 			text: myComment,
-	 			authorId : $rootScope.currentUser.regUser,
-	 			authorName: $rootScope.currentUser.firstname+' '+$rootScope.currentUser.lastname,
-	 			data: firebase.database.ServerValue.TIMESTAMP
-	 		})
+	 		$apiCheckin.postCheckinComments($scope.whichUser,$scope.whichEvent,myCheckin.$id,myComment);
 	 	}
+
 
 	 	$scope.deleteComment = function(myCheckin,key){
 	 		var refComments = ref.child(myCheckin.$id).child('comments').child(key);
@@ -53,13 +48,11 @@ roliveira.controller('CheckinController',['$api','$rootScope','$scope','$routePa
 
 
 	 	$scope.addCheckin = function(){
-	 		$auth.addCheckin($scope.whichUser,$scope.whichEvent);
+	 		$apiCheckin.addCheckin($scope.whichUser,$scope.whichEvent);
 	 	};
 
 	 	$scope.deleteCheckin = function(id){
-	 		var refSpecEvent = ref.child(id);
-	 		var delCheckin = $firebaseObject(refSpecEvent);
-	 		delCheckin.$remove(id);
+	 		$apiCheckin.deleteCheckin($scope.whichUser,$scope.whichEvent,id)
 	 	};
 
 

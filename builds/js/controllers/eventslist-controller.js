@@ -1,4 +1,4 @@
-roliveira.controller('eventsListController',['$api','$rootScope','$scope','$firebaseArray',function($api,$rootScope,$scope,$firebaseArray){
+roliveira.controller('eventsListController',['$apiCheckin','$rootScope','$scope','$firebaseArray',function($apiCheckin,$rootScope,$scope,$firebaseArray){
 		$rootScope.message = '';
 
 		// acessando a database no firebase
@@ -70,8 +70,8 @@ roliveira.controller('eventsListController',['$api','$rootScope','$scope','$fire
 		  
 		  });
 
-			$scope.doCheckin = function(record){
-		  	$api.addCheckin(record.authorId,record.id);
-		  }
+		$scope.doCheckin = function(record){
+			$apiCheckin.addCheckin(record.authorId,record.id);
+		}
 
 }]);
