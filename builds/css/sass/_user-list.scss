@@ -1,0 +1,72 @@
+/* user List Styles */
+
+.userlist {
+    width: 100%;
+    margin: 0 auto;
+    opacity: .95;
+    z-index: 10;
+    margin-top: 20px;
+  }
+  
+  .userlist ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .userlist li {
+    width: 50%;
+    float: left;
+    padding: 12px;
+    margin-bottom: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    border: 1px solid transparent;
+  }
+  
+  .userlist li:hover {
+    border: 1px solid #C5C5C5;
+    border-radius: 4px;
+  }
+  
+  .userlist li.expanded {
+    width: 100%;
+  }
+  
+  .userlist li.expanded form {
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .userlist li.expanded form input {
+    width: 80%;
+  }
+  
+  
+  .userlist li.expanded .btn-love {
+    background-color: #C61C6F;
+  }
+  
+  .userlist .buttons {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 5px;
+  }
+  
+  .userlist .info {
+    display: block;
+    float: left;
+    text-align: left;
+  }
+  
+  @media all and (max-width: 600px) {
+    .userlist li {
+      width: 100%;
+    }
+  
+    .userlist  .info  {
+      width: 70%;
+    }
+  }

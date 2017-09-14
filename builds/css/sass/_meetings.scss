@@ -1,0 +1,50 @@
+.addmeeting {
+    width:100%;
+}
+
+.addmeeting .inputwrapper {
+  margin-right:80px;
+}
+
+.addmeeting .inputwrapper input {
+    float: left;
+    width: 100%;
+}
+
+.addmeeting button {
+  width: 60px;
+  margin-left: 20px;
+  vertical-align: center;
+}
+
+.meetings {
+  padding-top: 10px;
+}
+
+.meetings h2 {
+  padding-bottom: 5px;
+}
+
+.meetings .meeting {
+  display: inline-block;
+  padding: 10px 20px 10px 15px;
+  margin: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid #C5C5C5;
+
+
+}
+
+.meetings .meeting .btn {
+  margin-right: 4px;
+  padding: 1px 8px;
+}
+
+.meetings .meeting .text {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.meetings .meeting .text a{
+  text-decoration: none;
+}

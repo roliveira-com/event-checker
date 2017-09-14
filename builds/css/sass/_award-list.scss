@@ -1,0 +1,30 @@
+ul.awardslist {
+    margin-top:5px;
+  }
+  
+  ul.awardslist li {
+    width: auto;
+    padding: 5px 5px 0 10px;
+    margin: 2px;
+    background-color: #797979;
+    color: white;
+    font-weight: normal;
+    border-radius: 4px;
+    font-family: Lato, 'Helvetica Nueue', Helvetica, Arial, sans-serif;
+  }
+  
+  ul.awardslist li:hover {
+    background-color: #F5974E;
+  }
+  
+  ul.awardslist li .btn-delete {
+    background-color: transparent;
+    background-size: 15px 15px;
+    background-position: center 40%;
+    margin:0;
+    border: none;
+  }
+  
+  ul.awardslist li .award {
+    padding-right: 15px;
+  }
