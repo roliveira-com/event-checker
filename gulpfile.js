@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   gutil = require('gulp-util'),
-  webserver = require('gulp-webserver');
+  webserver = require('gulp-webserver'),
+  compass = require('gulp-compass');
 
 gulp.task('js', function() {
   gulp.src('./builds/js/**/*');
@@ -11,12 +12,18 @@ gulp.task('html', function() {
 });
 
 gulp.task('css', function() {
-  gulp.src('./builds/css/*.css');
-});
+  gulp.src('.builds/css/sass/style.scss')
+    .pipe(compass({
+      config_file: './config.rb',
+      css: 'builds/css',
+      sass: 'builds/css/sass'
+    }))
+    .pipe(gulp.dest('builds/css'));
+  });
 
 gulp.task('watch', function() {
   gulp.watch('./builds/js/**/*', ['js']);
-  gulp.watch('./builds/css/*.css', ['css']);
+  gulp.watch('./builds/css/sass/**/*.scss', ['css']);
   gulp.watch(['./builds/*.html',
     './builds/views/*.html'], ['html']);
 });

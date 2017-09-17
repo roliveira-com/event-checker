@@ -1,0 +1,5 @@
+@mixin large-padding {
+    padding: 60px;
+}
+
+//use @include name-of-mixin to include this mixin ate the page

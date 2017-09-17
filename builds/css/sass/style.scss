@@ -1,0 +1,20 @@
+@import 'helpers/variables';
+@import 'helpers/placeholders';
+@import 'helpers/mixins';
+@import 'helpers/functions';
+
+// Caso precise trabalhar com sprites no futuro
+//@import 'sprite/*.png';
+
+@import 'base/reset';
+@import 'base/base';
+
+@import 'components/forms';
+@import 'components/buttons';
+@import 'components/user-list';
+@import 'components/award-list';
+@import 'components/nav';
+@import 'components/user-info';
+@import 'components/meetings';
+@import 'components/tooltip';
+@import 'components/checkins-list';
